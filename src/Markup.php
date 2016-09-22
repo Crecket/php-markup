@@ -8,7 +8,7 @@ use Crecket\PHPMarkup\Elements\NewLine;
 use Crecket\PHPMarkup\Elements\HtmlNewLine;
 use Crecket\PHPMarkup\Elements\Line;
 
-class Code
+class Markup
 {
 
     private $Elements;
