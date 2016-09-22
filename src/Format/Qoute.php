@@ -2,7 +2,7 @@
 
 namespace Crecket\PHPMarkup\Format;
 
-class Formatted implements FormatInterface
+class Qoute implements FormatInterface
 {
     /**
      * @param $text
@@ -10,6 +10,6 @@ class Formatted implements FormatInterface
      */
     public static function get($text)
     {
-        return '    ' . str_replace("\n", "\n    ", $text);
+        return '> ' . str_replace("\n", "\n\n> ", $text);
     }
 }

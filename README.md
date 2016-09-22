@@ -3,6 +3,8 @@ Create markup code suitable for reddit.
 
 ## Examples
 
+```PHP
+
 use Crecket\PHPMarkup\Format;
 
 $code = new \Crecket\PHPMarkup\Code(array(
@@ -10,11 +12,11 @@ $code = new \Crecket\PHPMarkup\Code(array(
     'escape_characters' => true
 ));
 
-```PHP
-// some random table
+
+
 $code->table(
     array(
-        Format\Italic::get('some random text'),
+        Format\Italic::get('italic column header'),
         'column2',
         'column3'
     ), array(
@@ -33,19 +35,15 @@ $code->table(
 // new line
 $code->newLine();
 
-$code->link('some text()', 'https://www.masterypoints.com');
+$code->link('a title for my link', 'https://www.masterypoints.com');
 
 $code->newLine();
 
-$code->text(
-    Format\Italic::get('some random text')
-);
+$code->text(Format\Italic::get('some random text'));
 
 $code->newLine();
 
-$code->text(
-    Format\Escaped::get('*some random text*')
-);
+$code->text(Format\Escaped::get('*some random text*'));
 
 // get result
 $code->newLine();

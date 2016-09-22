@@ -6,48 +6,57 @@ use Crecket\PHPMarkup\Elements\Table;
 use Crecket\PHPMarkup\Elements\Link;
 use Crecket\PHPMarkup\Elements\NewLine;
 use Crecket\PHPMarkup\Elements\HtmlNewLine;
-use Crecket\PHPMarkup\Elements\Text;
+use Crecket\PHPMarkup\Elements\Line;
 
 class Code
 {
 
     private $Elements;
 
-    private $options = array(
-        'html_mode' => false,
-        'escape_characters' => false
-    );
-
-    public function __construct($options)
+    /**
+     * Code constructor.
+     */
+    public function __construct()
     {
-        foreach ($options as $optionKey => $option) {
-            if (isset($this->options[$optionKey])) {
-                $this->options[$optionKey] = $option;
-            }
-        }
+
     }
 
+    /**
+     * @param $columns
+     * @param $rows
+     */
     public function table($columns, $rows)
     {
-        $element = new Table($this->options);
+        $element = new Table();
         $this->Elements[] = $element->set($columns, $rows);
     }
 
+    /**
+     * @param $text
+     * @param $link
+     */
     public function link($text, $link)
     {
-        $element = new Link($this->options);
+        $element = new Link();
         $this->Elements[] = $element->set($text, $link);
     }
 
-    public function text($text)
+    /**
+     * @param $text
+     * @param $newline
+     */
+    public function line($text, $newline = false)
     {
-        $element = new Text($this->options);
+        $element = new Line($newline);
         $this->Elements[] = $element->set($text);
     }
 
+    /**
+     *
+     */
     public function newLine()
     {
-        $this->Elements[] = new NewLine($this->options['html_mode']);
+        $this->Elements[] = new NewLine();
     }
 
     /**
@@ -59,6 +68,7 @@ class Code
     {
         $resulting_markup = '';
 
+        // loop through elements and get markup code
         foreach ($this->Elements as $element) {
             $resulting_markup .= $element->get_markup();
         }

@@ -2,19 +2,15 @@
 
 namespace Crecket\PHPMarkup\Elements;
 
-class NewLine implements ElementInterface
+class NewLine
 {
 
-    private $html_mode;
-
-    public function __construct($html_mode)
-    {
-        $this->html_mode = $html_mode;
-    }
-
+    /**
+     * @return string
+     */
     public function get_markup()
     {
-        return $this->html_mode ? "<br>" : "\n";
+        return "\n";
     }
 
 }

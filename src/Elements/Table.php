@@ -2,19 +2,24 @@
 
 namespace Crecket\PHPMarkup\Elements;
 
-class Table implements ElementInterface
+class Table
 {
-
-    private $options;
 
     private $columns;
     private $rows;
 
-    public function __construct($options)
+    /**
+     * Table constructor.
+     */
+    public function __construct()
     {
-        $this->options = $options;
     }
 
+    /**
+     * @param $columns
+     * @param $rows
+     * @return $this
+     */
     public function set($columns, $rows)
     {
         $this->columns = $columns;
@@ -22,26 +27,29 @@ class Table implements ElementInterface
         return $this;
     }
 
-    public function get_markup($html_mode = false)
+    /**
+     * @return string
+     */
+    public function get_markup()
     {
         $result_markup = '';
 
         // initial new line
-        $result_markup .= $this->options['html_mode'] ? "<br>" : "\n";
+        $result_markup .= "\n";
 
         // create the top columns names
         $result_markup .= implode('|', $this->columns);
 
         // newline before header underline
-        $result_markup .= $this->options['html_mode'] ? "<br>" : "\n";
+        $result_markup .= "\n";
 
         // header underline
         $result_markup .= implode('|', array_fill(0, count($this->columns), '---'));
 
-
+        // loop through rows
         foreach ($this->rows as $row) {
             // new line for every row
-            $result_markup .= $this->options['html_mode'] ? "<br>" : "\n";
+            $result_markup .= "\n";
             $result_markup .= implode('|', $row);
         }
 

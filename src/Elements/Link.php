@@ -2,21 +2,24 @@
 
 namespace Crecket\PHPMarkup\Elements;
 
-use Crecket\PHPMarkup\Format\Escaped;
-
-class Link implements ElementInterface
+class Link
 {
-
-    private $options;
 
     private $text;
     private $link;
 
-    public function __construct($options)
+    /**
+     * Link constructor.
+     */
+    public function __construct()
     {
-        $this->options = $options;
     }
 
+    /**
+     * @param $text
+     * @param $link
+     * @return $this
+     */
     public function set($text, $link)
     {
         $this->text = $text;
@@ -24,12 +27,11 @@ class Link implements ElementInterface
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function get_markup()
     {
-        if ($this->options['escape_characters']) {
-            $this->text = Escaped::get($this->text);
-            $this->link = Escaped::get($this->link);
-        }
         return '[' . $this->text . '](' . $this->link . ')';
     }
 }
