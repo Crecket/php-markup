@@ -4,20 +4,15 @@ Create markup code suitable for reddit.
 ## Examples
 
 ```PHP
-
 use Crecket\PHPMarkup\Format;
 
-$code = new \Crecket\PHPMarkup\Code(array(
-    'html_mode' => false,
-    'escape_characters' => true
-));
+$code = new \Crecket\PHPMarkup\Code();
 
-
-
+// a table with some text and custom headers
 $code->table(
     array(
         Format\Italic::get('italic column header'),
-        'column2',
+        Format\Strike::get('bad column'),
         'column3'
     ), array(
     array(
@@ -35,18 +30,36 @@ $code->table(
 // new line
 $code->newLine();
 
+// basic link
 $code->link('a title for my link', 'https://www.masterypoints.com');
 
-$code->newLine();
+// titles
+$code->line(Format\Title1::get('title1'), true);
+$code->line(Format\Title2::get('title2'), true);
+$code->line(Format\Title3::get('title3'), true);
+$code->line(Format\Title4::get('title4'), true);
 
-$code->text(Format\Italic::get('some random text'));
+$code->line(Format\Italic::get('italic text'), true);
+$code->line(Format\Bold::get('bold text'), true);
+$code->line(Format\Strike::get('strike through text'), true);
 
-$code->newLine();
+// automatically makes sure all words are super script
+$code->line(Format\SuperScript::get('super script text'), true);
 
-$code->text(Format\Escaped::get('*some random text*'));
+// code formatting
+$code->line(Format\Formatted::get("formatted text \nmultiline \ncode"), true);
+
+// code inline formatting variation
+$code->line(Format\InlineFormatted::get('inline formatted text'), true);
+
+// escape any special characters
+$code->line(Format\Escaped::get('*escaped special characters*'), true);
+
+// a qouted multi line text
+$code->line(Format\Qoute::get("wew I'm important \nsome random dude"), true);
 
 // get result
-$code->newLine();
-$code = $code->get();
+$markup = $code->get();
+
 ```
 
